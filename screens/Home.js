@@ -17,7 +17,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { dummyData, COLORS, SIZES, FONTS, icons, images } from '../constants';
 
-const Home = () => {
+const Home = ({navigation}) => {
 
 const [trending, setTrending] = useState(dummyData.trendingCurrencies)
 
@@ -25,7 +25,7 @@ const [transactionHistory, setTransactionHistory] = useState(dummyData.transacti
 
 
 useEffect(() => {
-   LogBox.ignoreLogs(['liste virtuelle affiché'])
+   LogBox.ignoreLogs(['virtualizedLists should never nested'])
 }, [])
 
 function renderHeader (){
@@ -43,6 +43,7 @@ const renderItem = ({item, index}) =>{
             borderRadius: 10,
             backgroundColor: COLORS.white
         }}
+        onPress={() => navigation.navigate("CryptoDetail", {currency: item})}
        >
         {/* currency  */}
         <View style={{
@@ -136,6 +137,7 @@ const renderItem = ({item, index}) =>{
                 </View>
 
                 <View style={{
+                    display: 'flex',
                     position: 'absolute',
                     bottom: "-30%"
                 }}
@@ -148,6 +150,9 @@ const renderItem = ({item, index}) =>{
                     }}>Trending</Text>
                     
                     <FlatList 
+                    style={{
+                      
+                    }}
                        horizontal
                        contentContaineStyle={{marginTop: SIZES.base, }}
                        data={trending}

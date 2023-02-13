@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
     View,
@@ -14,22 +14,24 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {  COLORS, SIZES, FONTS, icons } from '../constants';
 
 
-export default function TransactionHistory({customContainerStyle, history}) {
+const TransactionHistory = ({customContainerStyle, history}) => {
+
 
     const renderItem = ({item}) => {
         <TouchableOpacity 
           style={{
             flexDirection: 'row',
             alignItems: 'center',
+            padding: 20,
             paddingVertical: SIZES.base
           }}
         onPress={() => console.log(item)}
         >
              <Ionicons 
-                        style={{flex: 1 }}
+                        style={{flex: 1}}
                         name="notifications-outline"
                         size={35}
-                        color={COLORS.white}
+                        color={COLORS.primary}
                     />
             {/* <Image 
               source={icons.transaction}
@@ -40,16 +42,11 @@ export default function TransactionHistory({customContainerStyle, history}) {
               }}            
             /> */}
             <View style={{
-                flex: 1, 
+               flex: 1,
                 marginLeft: SIZES.radius
             }}>
-                <Text style={{
-                    ...FONTS.h3
-                }}>{item.description}</Text>
-                <Text style={{
-                    color: COLORS.gray,
-                     ...FONTS.body4
-                }}>{item.date}</Text>
+                <Text style={{...FONTS.h3}}>{item.description}</Text>
+                <Text style={{ color: COLORS.gray, ...FONTS.body4}}>{item.date}</Text>
             </View>
             <View style={{
                 flexDirection: 'row',
@@ -58,7 +55,7 @@ export default function TransactionHistory({customContainerStyle, history}) {
             }}>
                 <Text style={{
                     color: item.type == "B" ? COLORS.green : COLORS.black, ...FONTS.h3
-                }}>{item.amount}</Text>
+                }}>{item.amount} {item.currency}</Text>
                 <Image 
                    source={icons.right_arrow}
                    style={{
@@ -70,6 +67,8 @@ export default function TransactionHistory({customContainerStyle, history}) {
             </View>
 
         </TouchableOpacity>
+       
+
     }
     return(
       <View 
@@ -83,9 +82,10 @@ export default function TransactionHistory({customContainerStyle, history}) {
       }}>
         <Text style={{
            ...FONTS.h2 
-        }}>transaction</Text>
+        }}>Historique des Transactions</Text>
+
         <FlatList 
-          contentContainerStyle={{marginTop: SIZES.radius}}
+          contentContainerStyle={{ marginTop: SIZES.radius }}
           scrollEnabled={false}
           data={history}
           keyExtractor={item => `${item.id}`}
@@ -98,7 +98,7 @@ export default function TransactionHistory({customContainerStyle, history}) {
                     height: 1,
                     backgroundColor: COLORS.lightGray
                 }}>
-
+                 
                 </View>
             )
           }}
@@ -106,3 +106,6 @@ export default function TransactionHistory({customContainerStyle, history}) {
       </View>
     )
 }
+
+
+export default TransactionHistory;

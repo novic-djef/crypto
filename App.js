@@ -32,10 +32,16 @@ useEffect(() => {
         <Stack.Screen
           name="CryptoDetail"
           component={CryptoDetail}
+          options={{
+            headerShown: false
+          }}
         />
         <Stack.Screen
           name="Transaction"
           component={Transaction}
+          options={{
+            headerShown: false
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
