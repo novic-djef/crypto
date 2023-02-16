@@ -7,4 +7,6 @@ import HeaderBar from "./headerBar";
 
 import CurrencyLabel from "./currencyLabel";
 
-export { PriceAlert, TransactionHistory, HeaderBar, CurrencyLabel}
+import TextButton from "./textButton";
+
+export { PriceAlert, TransactionHistory, HeaderBar, CurrencyLabel, TextButton}
